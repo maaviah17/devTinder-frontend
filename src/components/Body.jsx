@@ -1,10 +1,10 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
 
 const Body = () => {
@@ -14,7 +14,7 @@ const Body = () => {
     const userData = useSelector((store) => store.user);
 
     const fetchUser = async () => {
-        if (userData) return;
+
         try {
             const user = await axios.get(
                 BASE_URL + "/profile/view", {
@@ -25,14 +25,20 @@ const Body = () => {
 
         }
         catch (err) {
-            navigate("/login");
-            console.log(err);
+            dispatch(removeUser());
+            if (err.status == 401) {
+                navigate("/login");
+            }
+            // dispatch(removeUser());
+            console.log(err + "somethings not right");
         }
     };
 
     useEffect(() => {
-        fetchUser();
-    }, [])
+        if (!userData) {
+            fetchUser();
+        }
+    }, []);
 
     return (
         <div>
