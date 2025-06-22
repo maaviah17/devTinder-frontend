@@ -9,6 +9,7 @@ const Login = () => {
 
     const [emailId, setEmailId] = useState("maaviah@mail.com");
     const [password, setPassword] = useState("Maaviah123!!");
+    const [error, setError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const Login = () => {
             dispatch(addUser(res.data))
             return navigate("/");
         } catch (err) {
+            setError(err?.response?.data || "something went wrong ;( ");
             console.log(err);
         }
 
@@ -80,14 +82,17 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}
                                 placeholder="Password"
-                                minlength="8"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                            // minlength="8"
+                            // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            // title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                             />
                         </label>
-                        <p className="validator-hint hidden">
-                            Must be more than 8 characters, including
-                            <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
+                        {/* <p className="validator-hint hidden">
+                         */}
+                        <p className="text-red-500">
+                            {error}
+                            {/* Must be more than 8 characters, including
+                            <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter */}
                         </p>
                     </div>
                     <div className="card-actions justify-center m-2">
