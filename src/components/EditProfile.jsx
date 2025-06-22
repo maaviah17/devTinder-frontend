@@ -50,7 +50,8 @@ const EditProfile = ({ user }) => {
 
     return (
         <>
-            <div className="flex justify-center m-10">
+
+            <div className="flex justify-center m-10 ">
 
                 <div className="flex justify-center mx-10">
                     <div className="card bg-base-300 w-96 shadow-sm">
@@ -71,28 +72,6 @@ const EditProfile = ({ user }) => {
                                     />
                                 </label>
 
-
-                                <span className="label label-text">Age</span>
-                                <label className="input validator my-2 ">
-                                    <input type="email" className="text-white" value={age} placeholder="" required
-                                        onChange={(e) => setAge(e.target.value)}
-                                    />
-                                </label>
-
-                                <span className="label label-text">Gender</span>
-                                <label className="input validator my-2 ">
-                                    <input type="email" className="text-white" value={gender} placeholder="" required
-                                        onChange={(e) => setGender(e.target.value)}
-                                    />
-                                </label>
-
-                                <span className="label label-text">About</span>
-                                <label className="input validator my-2 ">
-                                    <input type="email" className="text-white" value={about} placeholder="" required
-                                        onChange={(e) => setAbout(e.target.value)}
-                                    />
-                                </label>
-
                                 <span className="label label-text">Photo Url</span>
                                 <label className="input validator my-2 ">
                                     <input type="email" className="text-white" value={photoUrl} placeholder="mail@site.com" required
@@ -100,7 +79,49 @@ const EditProfile = ({ user }) => {
                                     />
                                 </label>
 
+                                <span className="label label-text">Age</span>
+                                {/* <label className="input validator my-2 ">
+                                    <input type="email" className="text-white" value={age} placeholder="" required
+                                        onChange={(e) => setAge(e.target.value)}
+                                    />
+                                </label> */}
+                                <input
+                                    type="number"
+                                    className="input validator"
+                                    value={age}
+                                    onChange={(e) => setAge(e.target.value)}
+                                    required
+                                    placeholder="select age"
+                                    min="18"
+                                    max="50"
+                                    title="18+"
+                                />
+                                <p className="validator-hint">Must be between be 1 to 10</p>
+
+                                {/* <span className="label label-text">Gender</span> */}
+                                <span className="label label-text">Gender</span>
+                                <label className="input validator my-2">
+                                    <select
+                                        className="text-white bg-transparent w-full"
+                                        value={gender}
+                                        required
+                                        onChange={(e) => setGender(e.target.value)}
+                                    >
+                                        <option value="" className="text-black" disabled>Select gender</option>
+                                        <option value="male" className="text-black">male</option>
+                                        <option value="female" className="text-black">female</option>
+                                    </select>
+                                </label>
+
+
                                 <span className="label label-text">{error?.status}</span>
+
+                                {/* <span className="label label-text">About</span>  */}
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend">About</legend>
+                                    <textarea className="textarea h-24" placeholder="Bio"></textarea>
+                                    <div className="label">Optional</div>
+                                </fieldset>
 
                             </div>
                             <div className="card-actions justify-center m-2">
@@ -109,7 +130,7 @@ const EditProfile = ({ user }) => {
                         </div>
                     </div>
                 </div>
-                <div className="justify-center items-center">
+                <div className="justify-center bg-base-300  p-5 items-center">
                     <p className="text-center font-semibold text-pink-400 text-[18px] mb-2">
                         Real-time changes below
                     </p>
@@ -121,6 +142,7 @@ const EditProfile = ({ user }) => {
                     <span>Profile updated successfully.</span>
                 </div>
             </div>)}
+
         </>
     )
 }

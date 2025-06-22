@@ -10,7 +10,7 @@ const Navbar = () => {
     // console.log(user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
- 
+
     const handleLogout = async () => {
         try {
             await axios.post(
@@ -53,7 +53,11 @@ const Navbar = () => {
                                         <span className="badge">New</span>
                                     </Link>
                                 </li>
-                                <li><a>Settings</a></li>
+                                <li>
+                                    <Link to="/connections">
+                                        Connections
+                                    </Link>
+                                </li>
                                 <li>
                                     <a onClick={handleLogout}>
                                         Logout
