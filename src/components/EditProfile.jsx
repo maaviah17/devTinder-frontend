@@ -9,9 +9,9 @@ const EditProfile = ({ user }) => {
 
     const [firstName, setFirstName] = useState(user.firstName);
     const [lastName, setLastName] = useState(user.lastName);
-    const [age, setAge] = useState(user.age);
+    const [age, setAge] = useState(user.age || "");
     const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-    const [gender, setGender] = useState(user.gender);
+    const [gender, setGender] = useState(user.gender || "");
     const [about, setAbout] = useState(user.about);
     const [error, setError] = useState("");
     const [showToast, setShowToast] = useState(false);
@@ -96,7 +96,7 @@ const EditProfile = ({ user }) => {
                                     max="50"
                                     title="18+"
                                 />
-                                <p className="validator-hint">Must be between be 1 to 10</p>
+                                <p className="validator-hint">Must be between be 18 to 50</p>
 
                                 {/* <span className="label label-text">Gender</span> */}
                                 <span className="label label-text">Gender</span>
@@ -114,7 +114,12 @@ const EditProfile = ({ user }) => {
                                 </label>
 
 
-                                <span className="label label-text">{error?.status}</span>
+                                {/* <span className="label label-text">{error?.status}</span>
+                                 */}
+
+                                {error?.status && (
+                                    <p className="label label-text text-red-500">{error.status}</p>
+                                )}
 
                                 {/* <span className="label label-text">About</span>  */}
                                 <fieldset className="fieldset">
