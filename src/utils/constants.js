@@ -1,1 +1,1 @@
-export const BASE_URL = "/apig"
+export const BASE_URL = "/api"
