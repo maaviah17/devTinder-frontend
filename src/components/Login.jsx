@@ -40,11 +40,16 @@ const Login = () => {
     const handleLogin = async () => {
 
         try {
+            console.log("🔑 Login function triggered");
+            console.log("📨 Sending login request with:", { emailId, password });
             const res = await axios.post(
                 BASE_URL + "/login", {
                 emailId,
                 password
             }, { withCredentials: true });
+            console.log("Email:", emailId); // should be string
+            console.log("Password:", password); // should be string
+
             // console.log(res.data);
             dispatch(addUser(res.data))
             return navigate("/");

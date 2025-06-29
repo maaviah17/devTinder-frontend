@@ -31,7 +31,7 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {user && (
+                {user?.firstName && (
                     <div className="flex-none gap-2">
                         <div className="dropdown dropdown-end mx-5 flex px-4 m-2">
                             <p className="p-2">Welcome, {user.firstName}</p>
